@@ -8,6 +8,16 @@ Vue.use(VueRouter)
 import index from '../views/index.vue';
 import login from '../views/login.vue';
 
+//导入嵌套组件
+import users from '../views/users.vue';
+import roles from '../views/roles.vue';
+import rights from '../views/rights.vue';
+import goods from '../views/goods.vue';
+import params from '../views/params.vue';
+import categories from '../views/categories.vue';
+import orders from '../views/orders.vue';
+import reports from '../views/reports.vue';
+
 // 注册路由规则
 const routes = [{
     path: '/login',
@@ -17,7 +27,40 @@ const routes = [{
     component: index,
     meta: {
         needlogin: true
-    }
+    },
+    children: [{
+            path: 'users',
+            component: users
+        },
+        {
+            path: 'roles',
+            component: roles
+        }, 
+        {
+            path: 'rights',
+            component: rights
+        },
+        {
+            path: 'goods',
+            component: goods
+        }, 
+        {
+            path: 'params',
+            component: params
+        },
+        {
+            path:'categories',
+            component:categories
+        },
+        {
+            path:'orders',
+            component:orders
+        },
+        {
+            path:'reports',
+            component:reports
+        }
+    ]
 }]
 
 // 实例化路由对象
@@ -29,7 +72,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
     // if(to.path.indexOf('/index')==0){
     if (to.meta.needlogin == true) {
-        if (window.localStorage.getItem('token')!=undefined) {
+        if (window.localStorage.getItem('token') != undefined) {
             next();
         } else {
             Vue.prototype.$message('请先登录');

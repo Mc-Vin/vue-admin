@@ -52,7 +52,6 @@ export default {
             password: this.ruleForm.password
           })
             .then(response => {
-              console.log(response);
               if(response.data.meta.status==200){
                 this.$message.success(response.data.meta.msg);
                 window.localStorage.setItem('token',response.data.data.token);
