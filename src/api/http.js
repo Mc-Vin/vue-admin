@@ -1,10 +1,20 @@
 //axios接口抽取
 import axios from 'axios';
+import Vue from 'vue'
+import router from '../router/router'
+
+
+
+//创建一个axios实例
+const http = axios.create({
+    baseURL: 'http://localhost:8888/api/private/v1/'
+})
 
 //axios拦截器
 // Add a request interceptor
-axios.interceptors.request.use(function (config) {
+http.interceptors.request.use(function (config) {
     // Do something before request is sent
+    config.headers.Authorization=window.localStorage.getItem('token');
     return config;
     
 }, function (error) {
@@ -13,19 +23,18 @@ axios.interceptors.request.use(function (config) {
 });
 
 // Add a response interceptor
-axios.interceptors.response.use(function (response) {
+http.interceptors.response.use(function (response) {
     // Do something with response data
+    if(response.data.meta.status==400){
+        window.localStorage.clear();
+        Vue.prototype.$message.error("请先完成登录");
+        router.push('/login');
+    }
     return response;
-    
 }, function (error) {
     // Do something with response error
     return Promise.reject(error);
 });
-
-//创建一个axios实例
-const http = axios.create({
-    baseURL: 'http://localhost:8888/api/private/v1/'
-})
 
 //根据接口文档抽取axios接口
 export const login = ({

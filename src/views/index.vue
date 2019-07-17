@@ -30,8 +30,8 @@
                     <i class="el-icon-location"></i>
                     <span>{{item.authName}}</span>
                   </template>
-                  <el-menu-item-group v-for='(subItem,subIndex) in item.children'>
-                    <el-menu-item :index='"index/"+subItem.path'>
+                  <el-menu-item-group v-for='(subItem) in item.children'>
+                    <el-menu-item :index='subItem.path'>
                       <i class="el-icon-menu"></i>{{subItem.authName}}
                     </el-menu-item>
                   </el-menu-item-group>

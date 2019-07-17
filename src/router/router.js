@@ -7,6 +7,7 @@ Vue.use(VueRouter)
 // 导入组件
 import index from '../views/index.vue';
 import login from '../views/login.vue';
+import NotFound from '../views/NotFound.vue';
 
 //导入嵌套组件
 import users from '../views/users.vue';
@@ -20,48 +21,66 @@ import reports from '../views/reports.vue';
 
 // 注册路由规则
 const routes = [{
-    path: '/login',
-    component: login
-}, {
-    path: '/index',
-    component: index,
-    meta: {
-        needlogin: true
+        path: '/login',
+        component: login
     },
-    children: [{
-            path: 'users',
-            component: users
+    {
+        path: '',
+        redirect: '/index/users'
+    },
+    {
+        path: '/index',
+        redirect: '/index/users'
+    },
+    {
+        path: '/index',
+        component: index,
+        meta: {
+            needlogin: true
         },
-        {
-            path: 'roles',
-            component: roles
-        }, 
-        {
-            path: 'rights',
-            component: rights
-        },
-        {
-            path: 'goods',
-            component: goods
-        }, 
-        {
-            path: 'params',
-            component: params
-        },
-        {
-            path:'categories',
-            component:categories
-        },
-        {
-            path:'orders',
-            component:orders
-        },
-        {
-            path:'reports',
-            component:reports
-        }
-    ]
-}]
+        children: [{
+                path: 'users',
+                component: users
+            },
+            {
+                path: 'roles',
+                component: roles
+            },
+            {
+                path: 'rights',
+                component: rights
+            },
+            {
+                path: 'goods',
+                component: goods
+            },
+            {
+                path: 'params',
+                component: params
+            },
+            {
+                path: 'categories',
+                component: categories
+            },
+            {
+                path: 'orders',
+                component: orders
+            },
+            {
+                path: 'reports',
+                component: reports
+            }
+        ]
+    },
+    {
+        path: '/notfound',
+        component: NotFound
+    },
+    {
+        path: '*',
+        redirect: '/notfound'
+    }
+]
 
 // 实例化路由对象
 const router = new VueRouter({
