@@ -15,6 +15,7 @@ import router from './router/router'
 //注册全局组件
 import breadcrumb from './components/breadcrumb.vue'
 Vue.component('breadcrumb',breadcrumb);
+
 //引入reset css
 import './assets/static/css/normalize.css';
 

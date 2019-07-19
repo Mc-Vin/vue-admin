@@ -14,9 +14,9 @@ const http = axios.create({
 // Add a request interceptor
 http.interceptors.request.use(function (config) {
     // Do something before request is sent
-    config.headers.Authorization=window.localStorage.getItem('token');
+    config.headers.Authorization = window.localStorage.getItem('token');
     return config;
-    
+
 }, function (error) {
     // Do something with request error
     return Promise.reject(error);
@@ -25,7 +25,7 @@ http.interceptors.request.use(function (config) {
 // Add a response interceptor
 http.interceptors.response.use(function (response) {
     // Do something with response data
-    if(response.data.meta.status==400){
+    if (response.data.meta.status == 400) {
         window.localStorage.clear();
         Vue.prototype.$message.error("请先完成登录");
         router.push('/login');
@@ -49,9 +49,25 @@ export const login = ({
 
 //获取左侧列表内容
 export const menus = () => {
-    return http.get('/menus', {
-        headers: {
-            Authorization: window.localStorage.getItem('token')
+    return http.get('/menus');
+}
+
+//获取用户数据列表
+export const users = ({
+    query,
+    pagenum,
+    pagesize
+}) => {
+    return http.get('/users', {
+        params: {
+            query,
+            pagenum,
+            pagesize
         }
     })
+}
+
+//获取权限列表
+export const rights = () => {
+    return http.get('/rights/list');
 }

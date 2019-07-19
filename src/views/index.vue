@@ -1,6 +1,6 @@
 <template>
   <div class="index-wrap">
-    <el-container>
+    <el-container class='above'>
       <el-header>
         <el-row>
           <el-col calss="left" :span="5">
@@ -14,7 +14,7 @@
           </el-col>
         </el-row>
       </el-header>
-      <el-container>
+      <el-container class="below">
         <el-aside width="200px">
           <el-row class="tac">
             <el-col :span="24">
@@ -82,6 +82,7 @@ export default {
     }
   },
   created(){
+    //页面加载后获取左侧列表数据
     menus()
     .then(response=>{
       this.menuList=response.data.data;
@@ -95,8 +96,12 @@ export default {
 
 <style lang='scss' scoped>
 .index-wrap {
+  height: 800px;
+  display: flex;
+  flex-direction:column;
   .el-container {
     .el-header {
+      height: 60px;
       background-color: rgb(179, 192, 209);
       .el-row .el-col {
         height: 60px;
@@ -115,7 +120,7 @@ export default {
       }
     }
     .el-container {
-      height: 1000px;
+      // flex: 1;s
       .el-menu.el-menu-vertical-demo {
         border-right: none;
       }
