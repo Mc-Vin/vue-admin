@@ -1,6 +1,6 @@
 <template>
   <div class="index-wrap">
-    <el-container class='above'>
+    <el-container class="above">
       <el-header>
         <el-row>
           <el-col calss="left" :span="5">
@@ -22,20 +22,20 @@
                 default-active="2"
                 class="el-menu-vertical-demo"
                 :unique-opened="true"
-                :router='true'
+                :router="true"
               >
-              <!-- 左侧列表内容渲染 -->
-                <el-submenu v-for='(item,index) in menuList' :index="''+index">
+                <!-- 左侧列表内容渲染 -->
+                <el-submenu v-for="(item,index) in menuList" :index="''+index">
                   <template slot="title">
                     <i class="el-icon-location"></i>
                     <span>{{item.authName}}</span>
                   </template>
-                  <el-menu-item-group v-for='(subItem) in item.children'>
-                    <el-menu-item :index='subItem.path'>
-                      <i class="el-icon-menu"></i>{{subItem.authName}}
+                  <el-menu-item-group v-for="(subItem) in item.children">
+                    <el-menu-item :index="'/index/'+subItem.path">
+                      <i class="el-icon-menu"></i>
+                      {{subItem.authName}}
                     </el-menu-item>
                   </el-menu-item-group>
-                </el-submenu>
                 </el-submenu>
               </el-menu>
             </el-col>
@@ -50,12 +50,12 @@
 </template>
 
 <script>
-import {menus} from '../api/http'
+import { menus } from "../api/http";
 export default {
   name: "index",
   data() {
     return {
-      menuList:[]
+      menuList: []
     };
   },
   methods: {
@@ -67,7 +67,7 @@ export default {
       })
         .then(() => {
           window.localStorage.removeItem("token");
-          this.$router.push('/login')
+          this.$router.push("/login");
           this.$message({
             type: "success",
             message: "退出成功!"
@@ -81,15 +81,15 @@ export default {
         });
     }
   },
-  created(){
+  created() {
     //页面加载后获取左侧列表数据
     menus()
-    .then(response=>{
-      this.menuList=response.data.data;
-    })
-    .catch(err=>{
-      console.log(err);
-    })
+      .then(response => {
+        this.menuList = response.data.data;
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 };
 </script>
@@ -98,7 +98,7 @@ export default {
 .index-wrap {
   height: 800px;
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   .el-container {
     .el-header {
       height: 60px;
@@ -125,7 +125,7 @@ export default {
         border-right: none;
       }
       .el-main {
-        padding-top:0;
+        padding-top: 0;
         background-color: rgb(233, 238, 243);
       }
     }

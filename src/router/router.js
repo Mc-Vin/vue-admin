@@ -14,6 +14,8 @@ import users from '../views/users.vue';
 import roles from '../views/roles.vue';
 import rights from '../views/rights.vue';
 import goods from '../views/goods.vue';
+import goodsAdd from '../views/goods/goodsAdd.vue';
+import goodsIndex from '../views/goods/goodsIndex.vue'
 import params from '../views/params.vue';
 import categories from '../views/categories.vue';
 import orders from '../views/orders.vue';
@@ -26,21 +28,17 @@ const routes = [{
     },
     {
         path: '',
-        redirect: '/index/users'
-    },
-    {
-        path: '/index',
-        redirect: '/index/users'
+        redirect: '/index'
     },
     {
         path: '/index',
         component: index,
-        meta: {
-            needlogin: true
-        },
         children: [{
                 path: 'users',
-                component: users
+                component: users,
+                meta: {
+                    needlogin: true
+                },
             },
             {
                 path: 'roles',
@@ -52,8 +50,19 @@ const routes = [{
             },
             {
                 path: 'goods',
-                component: goods
+                component: goods,
+                children:[
+                    {
+                        path:'',
+                        component:goodsIndex
+                    },
+                    {
+                        path:'add',
+                        component: goodsAdd
+                    },
+                ]
             },
+         
             {
                 path: 'params',
                 component: params
@@ -76,10 +85,10 @@ const routes = [{
         path: '/notfound',
         component: NotFound
     },
-    {
-        path: '*',
-        redirect: '/notfound'
-    }
+    // {
+    //     path: '*',
+    //     redirect: '/notfound'
+    // }
 ]
 
 // 实例化路由对象
@@ -89,7 +98,6 @@ const router = new VueRouter({
 
 //前置导航守卫
 router.beforeEach((to, from, next) => {
-    // if(to.path.indexOf('/index')==0){
     if (to.meta.needlogin == true) {
         if (window.localStorage.getItem('token') != undefined) {
             next();
