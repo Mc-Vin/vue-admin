@@ -170,15 +170,12 @@ export default {
     submitAssignRole() {
       const roleId = this.roleId;
       const rids = this.checkedKeys.join(",");
-      console.log(roleId);
-      console.log(rids);
       reAssignRole({
         roleId,
         rids
       })
         .then(response => {
           if (response.data.meta.status == 200) {
-            console.log(response);
             this.getRoleList();
             this.treeDataVisible=false;
           }

@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  name: "orders",
+  // name: "orders",
   data() {
     return {
       currentPage: 1,
