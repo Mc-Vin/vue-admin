@@ -1,6 +1,13 @@
-# manastage
+## Vue-admin
+
+This is an admin project developed by Vue.js and Element-UI.
+
+## Demo
+
+![](C:\Users\Administrator\Desktop\demo.gif)
 
 ## Project setup
+
 ```
 npm install
 ```

@@ -3,11 +3,11 @@
     <el-container class="above">
       <el-header>
         <el-row>
-          <el-col calss="left" :span="5">
-            <img src="../assets/static/images/logo.png" />
+          <el-col class="left" :span="5">
+            Vincent Zhu
           </el-col>
           <el-col :span="18">
-            <h2>电商后台管理系统</h2>
+            <h2>Vue-admin</h2>
           </el-col>
           <el-col :span="1">
             <i class="iconfont" @click="logout">&#xe60a;</i>
@@ -102,8 +102,9 @@ export default {
   .el-container {
     .el-header {
       height: 60px;
-      background-color: rgb(179, 192, 209);
+      background-color:black;
       .el-row .el-col {
+        color:#fff;
         height: 60px;
         line-height: 60px;
         h2 {
