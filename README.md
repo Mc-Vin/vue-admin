@@ -4,7 +4,7 @@ This is an admin project developed by Vue.js and Element-UI.
 
 ## Demo
 
-![](C:\Users\Administrator\Desktop\demo.gif)
+![](D:\web study\itcast\就业班\02练习\09Vue.js\10第十天\vue-admin\src\assets\static\demo\demo.gif)
 
 ## Project setup
 
